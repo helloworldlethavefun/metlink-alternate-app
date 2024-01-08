@@ -4,11 +4,11 @@
         <!-- placeholder, change name later --!>
     </head>
     <body>
-        <form method="POST" action="#">
+        <form method="POST" action="">
             {{  form.hidden_tag()  }}
-            {{  form.csrf_token  }}
             {{  form.stop(size=20) }}
             <input type="submit">
         </form>
+        <h3><a href="/stops">Back</a></h3>
     </body>
 </html>

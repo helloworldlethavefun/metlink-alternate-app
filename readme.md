@@ -1,4 +1,3 @@
-# Note if you find this it's a massive work in progress at this point in time!
 # Alternative Metlink Application
 
 This is a side project I am working because I hate the metlink ui for both the app and the site.

@@ -4,6 +4,12 @@
         <!-- placeholder, change name later --!>
     </head>
     <body>
-        <h1>Stops you wish to get information on</h1>
+        <h1>Stops you wish to get information on:</h1>
+        <ul>
+            {% for id, stop_name in stops.items() %}
+            <li>{{ id }}: {{ stop_name }}</li>
+            {% endfor %}
+        </ul>
+        <h3>Want to add more? Click <a href="/add-stops">here</a></h3>
     </body>
 </html>
