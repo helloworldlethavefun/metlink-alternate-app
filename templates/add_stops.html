@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>My alternate metlink app</title>
+        <!-- placeholder, change name later --!>
+    </head>
+    <body>
+        <form method="POST" action="#">
+            {{  form.hidden_tag()  }}
+            {{  form.csrf_token  }}
+            {{  form.stop(size=20) }}
+            <input type="submit">
+        </form>
+    </body>
+</html>
