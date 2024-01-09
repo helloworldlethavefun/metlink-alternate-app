@@ -91,7 +91,8 @@ def get_stop_predictions(stop_id):
     r = requests.get(url, params=payload, headers=headers)
     datass = r.json()
     expected_time = datass['departures'][0]['arrival']
-    return expected_time
+    destination = datass['departures'][0]['destination']['name']
+    return expected_time, destination
 
 # This is the main page. It takes the stops you wish to monitor and then find the times 
 # and display them
@@ -105,11 +106,11 @@ def index():
     for value in stops.items():
         stop_namee = value[1]
         stop_nn = get_stop_name(stop_namee)
-        time = get_stop_predictions(value)
+        time, target = get_stop_predictions(value)
         time = time['aimed']
         parsed_time = parser.parse(time)
         time = parsed_time.strftime("%H:%M:%S")
-        times[stop_nn] = time
+        times[stop_nn + " Service to: " + target] = time
     return render_template('index.html', times=times)
 
 # This is the page where users can add/remove stops from the list
@@ -126,4 +127,4 @@ def managing_stops():
 # When the program is ran, import all of the information of the stops and start flask
 if __name__ == "__main__":
     load_json_data()
-    app.run(port=8008, host='0.0.0.0')
+    app.run(port=8008, host='0.0.0.0', debug=True)
