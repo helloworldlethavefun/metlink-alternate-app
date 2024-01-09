@@ -100,7 +100,7 @@ def index():
     try:
         pull_list_from_file()
     except:
-        return "Looks like there is no stops to look at, maybe add some? <a href='/add-stops'>Here</a>"
+        return "Looks like there is no stops to look at, maybe add some? <a href='/manage-stops'>Here</a>"
     times = {}
     for value in stops.items():
         stop_namee = value[1]
