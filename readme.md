@@ -1,4 +1,4 @@
-# Alternative Metlink Application
+# Phat Controller
 
 This is a side project I am working because I hate the metlink ui for both the app and the site.
 It uses the Metlink OpenData API to periodcally obtain predictions for which ever stops you add to monitor

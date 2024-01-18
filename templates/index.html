@@ -1,11 +1,21 @@
 <html>
     <head>
-        <title>My alternate metlink app</title>
+        <title>The Phat Controller</title>
         <meta http-equiv="refresh" content="60">
-        <!-- Placeholder title, change later --!>
+        <style>
+            body {
+                background-color: {{ colour }};
+                font-family: monospace;
+            }
+
+            h1 {
+                text-align: center;
+                font-size:8em;
+            }
+        </style>
     </head>
     <body>
-        <h1>It works!</h1>
+        <h1>The Phat Controller</h1>
         <ul>
             {% for id, time in times.items() %}
             <li>{{ id }}: {{ time }}</li>

@@ -1,13 +1,10 @@
-# This is the main file for my alternative metlink application
+# main.py file for the Phat Controller
 
 # import the required modules
 import os
 import requests
 import json
-from flask import Flask, render_template, redirect, url_for
-from flask_wtf import FlaskForm
-from wtforms import StringField
-from wtforms.validators import DataRequired
+from flask import Flask, render_template, redirect, url_for, request
 from dateutil import parser
 
 # set some variables that will make it easier to query the api using requests as well as to keep track o stuff
@@ -19,12 +16,7 @@ stop_n = 0
 app = Flask(__name__)
 app.secret_key = 'ASuperSecretKey'
 stop_names_n = 0
-
-
-# Define a form that collects the stopname 
-class AddStopsForm(FlaskForm):
-    stop = StringField('stop_name', validators=[DataRequired()])
-
+colour = 'grey'
 
 # load in all the stops information
 def load_json_data():
@@ -107,21 +99,28 @@ def index():
         stop_namee = value[1]
         stop_nn = get_stop_name(stop_namee)
         time, target = get_stop_predictions(value)
-        time = time['aimed']
-        parsed_time = parser.parse(time)
-        time = parsed_time.strftime("%H:%M:%S")
-        times[stop_nn + " Service to: " + target] = time
-    return render_template('index.html', times=times)
+        try:
+            time = time['aimed']
+            parsed_time = parser.parse(time)
+            time = parsed_time.strftime("%H:%M:%S")
+        except:
+            time = f"No Service to {stop_namee} at this point"
+            target = ""
+        times[stop_nn + " Service to " + target] = time
+    return render_template('index.html', times=times, colour=colour)
 
 # This is the page where users can add/remove stops from the list
 @app.route("/manage-stops", methods=['GET', 'POST'])
 def managing_stops():
-    form = AddStopsForm()
-    if form.validate_on_submit():
-        data = form.stop.data
+    global colour
+    if request.method == 'POST':
+        stopa = request.form['stops']
+        colour = request.form['colour']
+        if data == "":
+            return render_template('add_stops.html')
         stop_ids = get_stop_id(data)
         write_list_to_file()
-    return render_template('add_stops.html', form=form)
+    return render_template('add_stops.html')
 
 
 # When the program is ran, import all of the information of the stops and start flask
