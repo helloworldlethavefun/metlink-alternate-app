@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Your head content -->
+</head>
+<body>
+
+    <h1>Choose a Stop</h1>
+    
+    <form method="POST" action="{{ url_for('managing_stops') }}">
+        {% for key, value in stop_results.items() %}
+            <label>
+                <input type="radio" name="chosen_stop" value="{{ key }}">
+                {{ value }} (ID: {{ key }})
+            </label><br>
+        {% endfor %}
+        <input type="submit" value="Choose">
+    </form>
+
+</body>
+</html>
+
