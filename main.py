@@ -127,4 +127,4 @@ def managing_stops():
 
 # When the program is ran, import all of the information of the stops and start flask
 if __name__ == "__main__":
-    app.run(port=8008, host='0.0.0.0', debug=True)
+    app.run(port=8008, host='0.0.0.0')
