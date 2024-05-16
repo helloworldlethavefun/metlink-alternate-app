@@ -67,10 +67,8 @@ def index():
     try:
         pull_list_from_file()
     except:
-        print(stops)
         return "Looks like there is no stops to look at, maybe add some? <a href='/manage-stops'>Here</a>"
     times = {}
-    print(stops)
     for value in stops.items():
         stop_id = value[1]
         stop_name = search_for_stop_name(stop_id)
@@ -102,7 +100,6 @@ def managing_stops():
         elif stop:
             # If a stop is directly entered without choosing from the selection screen
             stop_results = search_for_stop_id(stop)
-            print(stop_results)
             if stop_results:
                 if isinstance(stop_results, int):
                     # Only one result (integer), proceed with it
